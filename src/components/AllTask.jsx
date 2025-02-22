@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
 import axios from "axios";
+import React from "react";
 
 const AllTask = () => {
   const {
@@ -16,6 +16,11 @@ const AllTask = () => {
       return response.data; // Return the tasks
     },
   });
+    
+    if (isLoading) {
+        return <div className="text-center min-h-screen grid place-items-center">Loading...</div>;
+  
+    }
 
   const handleDelete = async (id) => {
     await axios.delete(`https://task-mangement-two.vercel.app/task/${id}`);
